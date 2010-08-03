@@ -128,6 +128,7 @@ if (!Function.prototype.curry) {
         return null;
     }
 
+    // Try
     function attempt (fn, t) {
         var result = fn(t);
         return result !== null ? result : t;
