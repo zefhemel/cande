@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Parser</title>
+        <script type="application/javascript" src="jquery-1.4.1.min.js">
+        </script>
+        <script type="application/javascript" src="aterm.js">
+        </script>
+    </head>
+    <body>
+    	  Language: <select id="lang">
+    	  	<option>Java-15</option>
+          <option>GoodJS</option>
+          <option>MoBL</option>
+    	  </select><br/>
+        <textarea rows="10" cols="60" id="code"></textarea><br/>
+        <button onclick="parse()">
+            Parse
+        </button><br/>
+        <textarea rows="10" cols="60" id="tree"></textarea>
+        <script>
+            function parse(){
+                $.getJSON("http://localhost:8080/candeparser/parse?lang=" + $('#lang').val() + "&callback=?", {
+                    code: $('#code').val()
+                }, function(data, status, r){
+                    $('#tree').val(data);
+                });
+            }
+        </script>
+    </body>
+</html>
